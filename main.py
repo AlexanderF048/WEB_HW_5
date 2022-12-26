@@ -77,6 +77,7 @@ async def currency_handler(currency_list, cur=('USD', 'EUR')):
 
     for date in currency_list:
         out_cur_dict = {date['date']: {}}
+        print(out_cur_dict)
 
         for i in date['exchangeRate']:
             #print(i)
@@ -84,10 +85,12 @@ async def currency_handler(currency_list, cur=('USD', 'EUR')):
             for req_cur in cur:
                 if req_cur in i.values():
                     formatted = {i['currency']: {'sale': i['saleRateNB'], 'purchase': i['purchaseRateNB']}}
-                    #print(formatted)
+                    print(formatted)
 
                     out_cur_dict[date['date']].update(formatted)
-                    output_list.append(out_cur_dict)
+                    print(f"OUT DICT::::::::::{out_cur_dict}")
+
+        output_list.append(out_cur_dict)
     return output_list
 
 
